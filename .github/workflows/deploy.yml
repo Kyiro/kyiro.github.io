@@ -1,0 +1,53 @@
+{
+    name: Build and deploy,
+    on: {
+        push: {
+            branches: [ main ]
+        }
+    },
+    jobs: {
+        build: {
+            runs-on: ubuntu-latest,
+            steps: [
+                {
+                    name: Install Deno,
+                    uses: denoland/setup-deno@v1,
+                    with: {
+                        deno-version: v1.37.x
+                    }
+                },
+                {
+                    name: Build the website,
+                    run:
+                        deno task build
+                },
+                {
+                    name: Upload GitHub Pages artifact,
+                    uses: actions/upload-pages-artifact@v1.0.7,
+                    with: {
+                        path: _site
+                    }
+                }
+            ]
+        },
+        deploy: {
+            needs: build,
+            permissions: {
+                pages: write,
+                id-token: write
+            },
+            environment: {
+                name: github-pages,
+                url: "${{steps.deployment.outputs.page_url}}"
+            },
+            runs-on: ubuntu-latest,
+            steps: [
+                {
+                    name: Deploy to GitHub Pages,
+                    id: deployment,
+                    uses: actions/deploy-pages@v1
+                }
+            ]
+        }
+    }
+}
