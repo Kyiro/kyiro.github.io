@@ -10,6 +10,9 @@
             runs-on: ubuntu-latest,
             steps: [
                 {
+                    uses: actions/checkout@v3
+                },
+                {
                     name: Install Deno,
                     uses: denoland/setup-deno@v1,
                     with: {
@@ -18,8 +21,7 @@
                 },
                 {
                     name: Build the website,
-                    run:
-                        deno task build
+                    run: deno task build
                 },
                 {
                     name: Upload GitHub Pages artifact,
