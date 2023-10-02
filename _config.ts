@@ -1,6 +1,7 @@
 import lume from "lume/mod.ts";
 import minify_html from "lume/plugins/minify_html.ts";
 import tailwindcss from "lume/plugins/tailwindcss.ts";
+import lightningCss from "lume/plugins/lightningcss.ts";
 import postcss from "lume/plugins/postcss.ts";
 import tailwindConfig from "./tailwind.config.ts";
 
@@ -17,5 +18,6 @@ site.use(tailwindcss({
     },
 }));
 site.use(postcss());
+site.use(lightningCss());
 
 export default site;
