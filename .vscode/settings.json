@@ -1,0 +1,13 @@
+{
+    "deno.enable": true,
+    "deno.cacheOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "denoland.vscode-deno",
+    "tailwindCSS.includeLanguages": {
+        "nunjucks": "html"
+    },
+    "emmet.includeLanguages": {
+        "nunjucks": "html"
+    }
+}
